@@ -1,1 +1,1 @@
-# SEATING-CHART
+redirect to seating chart
