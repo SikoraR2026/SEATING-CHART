@@ -47,15 +47,36 @@
 
   /* Tables grid */
   .tables-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 16px; }
-  .table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; transition: border-color 0.2s, transform 0.15s; }
+  .table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; transition: border-color 0.2s, transform 0.15s; display: flex; flex-direction: column; }
   .table-card:hover { border-color: var(--gold); transform: translateY(-2px); }
   .table-number { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
   .table-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
   .table-divider { width: 30px; height: 1px; background: var(--border); margin: 8px auto; }
   .guest-entry { font-size: 12px; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--border); text-align: left; line-height: 1.4; }
-  .guest-entry:last-child { border-bottom: none; }
+  .guest-entry:last-of-type { border-bottom: none; }
   .guest-entry.guest-slot { color: var(--muted); font-style: italic; }
   .guest-entry.dance-group { color: var(--gold); font-size: 11px; }
+
+  /* Teleport button */
+  .tp-btn {
+    display: block;
+    margin-top: 14px;
+    padding: 8px 10px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
+    border: 1px solid rgba(201,168,76,0.35);
+    border-radius: 8px;
+    color: var(--gold-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    text-align: center;
+  }
+  .tp-btn:hover { background: rgba(201,168,76,0.25); border-color: var(--gold); transform: translateY(-1px); }
+  .tp-btn::before { content: '✦ '; }
 
   /* Open / Available tables section */
   .open-section { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 20px; padding: 36px; position: relative; overflow: hidden; margin-top: 24px; }
@@ -69,12 +90,13 @@
     background: rgba(58,158,106,0.08);
     border: 1px solid var(--green-border);
     border-radius: 14px;
-    padding: 24px 14px 20px;
+    padding: 20px 14px;
     text-align: center;
     transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
     position: relative;
     overflow: hidden;
     animation: fadeUp 0.4s ease both;
+    display: flex; flex-direction: column;
   }
   .open-card:nth-child(1) { animation-delay: 0.05s; }
   .open-card:nth-child(2) { animation-delay: 0.10s; }
@@ -90,6 +112,27 @@
   .open-seats { font-size: 11px; color: #4a7a5a; margin-top: 6px; }
   .available-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: blink 2s ease-in-out infinite; vertical-align: middle; }
   @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
+
+  /* Green teleport button */
+  .tp-btn-green {
+    display: block;
+    margin-top: 12px;
+    padding: 8px 10px;
+    background: linear-gradient(135deg, rgba(58,158,106,0.2), rgba(58,158,106,0.05));
+    border: 1px solid rgba(58,158,106,0.35);
+    border-radius: 8px;
+    color: var(--green-light);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: background 0.2s, border-color 0.2s, transform 0.15s;
+    text-align: center;
+  }
+  .tp-btn-green:hover { background: rgba(58,158,106,0.35); border-color: var(--green); transform: translateY(-1px); }
+  .tp-btn-green::before { content: '✦ '; }
 </style>
 </head>
 <body>
@@ -99,7 +142,7 @@
     <div class="event-label">Seating Chart</div>
     <h1>Women Beyond<br><span>The Storm 2026</span></h1>
     <div class="divider"></div>
-    <p class="subtitle">Reserved tables are listed below — open seating available in green</p>
+    <p class="subtitle">Click a table's teleport button to go directly to your seat in Second Life</p>
   </header>
 
   <div class="legend">
@@ -110,7 +153,7 @@
   <!-- Reserved Tables -->
   <div class="reserved-section">
     <h2>Reserved Seating</h2>
-    <p class="desc">Guests with pre-assigned seats — please find your table below.</p>
+    <p class="desc">Guests with pre-assigned seats — click the teleport button to go directly to your table!</p>
     <div class="tables-grid">
 
       <!-- TABLE 1 -->
@@ -126,6 +169,7 @@
         <div class="guest-entry">Princess Dr. Eva C V Carter</div>
         <div class="guest-entry">Lady Pinellope</div>
         <div class="guest-entry guest-slot">Guest</div>
+        <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/24/90/2003" target="_blank">Teleport to Table 1</a>
       </div>
 
       <!-- TABLE 2 -->
@@ -141,6 +185,7 @@
         <div class="guest-entry">Sir Dominic s Banks</div>
         <div class="guest-entry">Baroness A Reyez</div>
         <div class="guest-entry guest-slot">Guest</div>
+        <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/25/82/2003" target="_blank">Teleport to Table 2</a>
       </div>
 
       <!-- TABLE 3 -->
@@ -156,6 +201,7 @@
         <div class="guest-entry dance-group">✦ Honey's Greek Unity Dance Group</div>
         <div class="guest-entry dance-group">✦ Honey's Greek Unity Dance Group</div>
         <div class="guest-entry dance-group">✦ Honey's Greek Unity Dance Group</div>
+        <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/19/94/2003" target="_blank">Teleport to Table 3</a>
       </div>
 
       <!-- TABLE 4 -->
@@ -171,6 +217,7 @@
         <div class="guest-entry">Jrom Halostar</div>
         <div class="guest-entry">Ms. Celena Stanwyck - Speaker</div>
         <div class="guest-entry guest-slot">Guest</div>
+        <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/25/93/2003" target="_blank">Teleport to Table 4</a>
       </div>
 
     </div>
@@ -179,14 +226,51 @@
   <!-- Open / Available Tables -->
   <div class="open-section">
     <h2><span class="available-dot"></span>Available Tables</h2>
-    <p class="desc">No reservation? No problem — grab any open seat at the green tables below. Walk-ins always welcome!</p>
+    <p class="desc">No reservation? No problem — grab any open seat and click the teleport button to go directly to your table!</p>
     <div class="open-grid">
-      <div class="open-card"><div class="open-number">5</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div></div>
-      <div class="open-card"><div class="open-number">6</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div></div>
-      <div class="open-card"><div class="open-number">7</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div></div>
-      <div class="open-card"><div class="open-number">8</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div></div>
-      <div class="open-card"><div class="open-number">9</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div></div>
-      <div class="open-card"><div class="open-number">10</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div></div>
+
+      <div class="open-card">
+        <div class="open-number">5</div>
+        <div class="open-label">Open</div>
+        <div class="open-seats">Walk-in welcome</div>
+        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/34/93/2003" target="_blank">Teleport</a>
+      </div>
+
+      <div class="open-card">
+        <div class="open-number">6</div>
+        <div class="open-label">Open</div>
+        <div class="open-seats">Walk-in welcome</div>
+        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/41/89/2003" target="_blank">Teleport</a>
+      </div>
+
+      <div class="open-card">
+        <div class="open-number">7</div>
+        <div class="open-label">Open</div>
+        <div class="open-seats">Walk-in welcome</div>
+        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/17/73/2003" target="_blank">Teleport</a>
+      </div>
+
+      <div class="open-card">
+        <div class="open-number">8</div>
+        <div class="open-label">Open</div>
+        <div class="open-seats">Walk-in welcome</div>
+        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/26/76/2003" target="_blank">Teleport</a>
+      </div>
+
+      <div class="open-card">
+        <div class="open-number">9</div>
+        <div class="open-label">Open</div>
+        <div class="open-seats">Walk-in welcome</div>
+        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/34/76/2003" target="_blank">Teleport</a>
+      </div>
+
+      <div class="open-card">
+        <div class="open-number">10</div>
+        <div class="open-label">Open</div>
+        <div class="open-seats">Walk-in welcome</div>
+        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/38/78/2003" target="_blank">Teleport</a>
+      </div>
+
     </div>
   </div>
 
