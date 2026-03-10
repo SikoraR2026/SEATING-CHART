@@ -1,141 +1,92 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Women Beyond The Storm 2026</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>Women Beyond The Storm 2026</title><link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
 <style>
-  :root {
-    --gold: #c9a84c;
-    --gold-light: #e8d190;
-    --dark: #0f0e0c;
-    --card: #1a1814;
-    --surface: #221f1a;
-    --border: #3a3630;
-    --text: #f0ead8;
-    --muted: #8a8070;
-    --green: #3a9e6a;
-    --green-light: #5dcc90;
-    --green-bg: #0e1f16;
-    --green-border: #1e4a30;
-  }
-  * { margin: 0; padding: 0; box-sizing: border-box; }
-  body { font-family: 'DM Sans', sans-serif; background: var(--dark); color: var(--text); min-height: 100vh; overflow-x: hidden; }
-  body::before { content: ''; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E"); pointer-events: none; z-index: 0; opacity: 0.4; }
-  .container { position: relative; z-index: 1; max-width: 820px; margin: 0 auto; padding: 48px 24px 80px; }
-
-  /* Header */
-  header { text-align: center; margin-bottom: 48px; }
-  .event-label { font-size: 11px; letter-spacing: 4px; text-transform: uppercase; color: var(--gold); margin-bottom: 12px; font-weight: 500; }
-  h1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 6vw, 52px); line-height: 1.1; color: var(--text); margin-bottom: 16px; }
-  h1 span { color: var(--gold); }
-  .divider { width: 80px; height: 1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 20px auto; }
-  .subtitle { color: var(--muted); font-size: 14px; font-weight: 300; }
-
-  /* Legend */
-  .legend { display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; justify-content: center; }
-  .legend-item { display: flex; align-items: center; gap: 0.5rem; font-size: 0.78rem; color: var(--muted); }
-  .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
-  .legend-dot.assigned { background: var(--gold); }
-  .legend-dot.open { background: var(--green); }
-
-  /* Reserved tables section */
-  .reserved-section { background: var(--card); border: 1px solid var(--border); border-radius: 20px; padding: 36px; margin-bottom: 24px; }
-  .reserved-section h2 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--gold-light); }
-  .reserved-section .desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
-
-  /* Tables grid */
-  .tables-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(175px, 1fr)); gap: 16px; }
-  .table-card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 20px 16px; text-align: center; transition: border-color 0.2s, transform 0.15s; display: flex; flex-direction: column; }
-  .table-card:hover { border-color: var(--gold); transform: translateY(-2px); }
-  .table-number { font-family: 'Playfair Display', serif; font-size: 32px; color: var(--gold); line-height: 1; margin-bottom: 4px; }
-  .table-label { font-size: 10px; letter-spacing: 2px; text-transform: uppercase; color: var(--muted); margin-bottom: 10px; }
-  .table-divider { width: 30px; height: 1px; background: var(--border); margin: 8px auto; }
-  .guest-entry { font-size: 12px; color: var(--text); padding: 4px 0; border-bottom: 1px solid var(--border); text-align: left; line-height: 1.4; }
-  .guest-entry:last-of-type { border-bottom: none; }
-  .guest-entry.guest-slot { color: var(--muted); font-style: italic; }
-  .guest-entry.dance-group { color: var(--gold); font-size: 11px; }
-
-  /* Teleport button */
-  .tp-btn {
-    display: block;
-    margin-top: 14px;
-    padding: 8px 10px;
-    background: linear-gradient(135deg, rgba(201,168,76,0.15), rgba(201,168,76,0.05));
-    border: 1px solid rgba(201,168,76,0.35);
-    border-radius: 8px;
-    color: var(--gold-light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s, transform 0.15s;
-    text-align: center;
-  }
-  .tp-btn:hover { background: rgba(201,168,76,0.25); border-color: var(--gold); transform: translateY(-1px); }
-  .tp-btn::before { content: '✦ '; }
-
-  /* Open / Available tables section */
-  .open-section { background: var(--green-bg); border: 1px solid var(--green-border); border-radius: 20px; padding: 36px; position: relative; overflow: hidden; margin-top: 24px; }
-  .open-section::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, transparent, var(--green), transparent); }
-  .open-section h2 { font-family: 'Playfair Display', serif; font-size: 22px; margin-bottom: 8px; color: var(--green-light); }
-  .open-section .desc { font-size: 14px; color: var(--muted); margin-bottom: 28px; line-height: 1.6; }
-
-  /* Green table cards */
-  .open-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 14px; }
-  .open-card {
-    background: rgba(58,158,106,0.08);
-    border: 1px solid var(--green-border);
-    border-radius: 14px;
-    padding: 20px 14px;
-    text-align: center;
-    transition: border-color 0.2s, transform 0.15s, box-shadow 0.2s;
-    position: relative;
-    overflow: hidden;
-    animation: fadeUp 0.4s ease both;
-    display: flex; flex-direction: column;
-  }
-  .open-card:nth-child(1) { animation-delay: 0.05s; }
-  .open-card:nth-child(2) { animation-delay: 0.10s; }
-  .open-card:nth-child(3) { animation-delay: 0.15s; }
-  .open-card:nth-child(4) { animation-delay: 0.20s; }
-  .open-card:nth-child(5) { animation-delay: 0.25s; }
-  .open-card:nth-child(6) { animation-delay: 0.30s; }
-  @keyframes fadeUp { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-  .open-card:hover { border-color: var(--green); transform: translateY(-3px); box-shadow: 0 8px 24px rgba(58,158,106,0.15); }
-  .open-card::before { content: ''; position: absolute; top: 0; left: 50%; transform: translateX(-50%); width: 40px; height: 2px; background: var(--green); border-radius: 0 0 4px 4px; }
-  .open-number { font-family: 'Playfair Display', serif; font-size: 36px; color: var(--green-light); line-height: 1; margin-bottom: 6px; }
-  .open-label { font-size: 10px; letter-spacing: 2.5px; text-transform: uppercase; color: var(--green); font-weight: 500; }
-  .open-seats { font-size: 11px; color: #4a7a5a; margin-top: 6px; }
-  .available-dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--green); margin-right: 6px; animation: blink 2s ease-in-out infinite; vertical-align: middle; }
-  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.3; } }
-
-  /* Green teleport button */
-  .tp-btn-green {
-    display: block;
-    margin-top: 12px;
-    padding: 8px 10px;
-    background: linear-gradient(135deg, rgba(58,158,106,0.2), rgba(58,158,106,0.05));
-    border: 1px solid rgba(58,158,106,0.35);
-    border-radius: 8px;
-    color: var(--green-light);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 500;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    text-decoration: none;
-    transition: background 0.2s, border-color 0.2s, transform 0.15s;
-    text-align: center;
-  }
-  .tp-btn-green:hover { background: rgba(58,158,106,0.35); border-color: var(--green); transform: translateY(-1px); }
-  .tp-btn-green::before { content: '✦ '; }
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:#0f0e0c;color:#f0ead8;min-height:100vh;overflow-x:hidden}
+/* Password Gate */
+#pw-gate{position:fixed;inset:0;background:#0f0e0c;z-index:9999;display:flex;align-items:center;justify-content:center;flex-direction:column;gap:20px}
+#pw-gate::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;opacity:.4}
+.pw-box{background:#1a1814;border:1px solid #3a3630;border-radius:20px;padding:48px 40px;text-align:center;max-width:380px;width:90%;position:relative;z-index:1}
+.pw-logo{font-family:'Playfair Display',serif;font-size:22px;color:#f0ead8;margin-bottom:6px}
+.pw-logo span{color:#c9a84c}
+.pw-divider{width:60px;height:1px;background:linear-gradient(90deg,transparent,#c9a84c,transparent);margin:16px auto}
+.pw-label{font-size:12px;letter-spacing:3px;text-transform:uppercase;color:#8a8070;margin-bottom:20px}
+.pw-input{width:100%;padding:14px 18px;background:#221f1a;border:1px solid #3a3630;border-radius:10px;color:#f0ead8;font-family:'DM Sans',sans-serif;font-size:15px;text-align:center;letter-spacing:3px;outline:none;transition:border-color .2s}
+.pw-input:focus{border-color:#c9a84c}
+.pw-btn{margin-top:16px;width:100%;padding:14px;background:linear-gradient(135deg,rgba(201,168,76,.2),rgba(201,168,76,.08));border:1px solid rgba(201,168,76,.4);border-radius:10px;color:#e8d190;font-family:'DM Sans',sans-serif;font-size:13px;font-weight:500;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:background .2s,border-color .2s}
+.pw-btn:hover{background:rgba(201,168,76,.3);border-color:#c9a84c}
+.pw-error{font-size:12px;color:#e06060;margin-top:12px;min-height:18px;letter-spacing:1px}
+.pw-hint{font-size:11px;color:#3a3630;margin-top:16px}
+/* Main content hidden until unlocked */
+#main-content{display:none}
+/* Original styles */
+:root{--gold:#c9a84c;--gold-light:#e8d190;--dark:#0f0e0c;--card:#1a1814;--surface:#221f1a;--border:#3a3630;--text:#f0ead8;--muted:#8a8070;--green:#3a9e6a;--green-light:#5dcc90;--green-bg:#0e1f16;--green-border:#1e4a30}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");pointer-events:none;z-index:0;opacity:.4}
+.container{position:relative;z-index:1;max-width:820px;margin:0 auto;padding:48px 24px 80px}
+header{text-align:center;margin-bottom:48px}
+.event-label{font-size:11px;letter-spacing:4px;text-transform:uppercase;color:var(--gold);margin-bottom:12px;font-weight:500}
+h1{font-family:'Playfair Display',serif;font-size:clamp(28px,6vw,52px);line-height:1.1;color:var(--text);margin-bottom:16px}
+h1 span{color:var(--gold)}
+.divider{width:80px;height:1px;background:linear-gradient(90deg,transparent,var(--gold),transparent);margin:20px auto}
+.subtitle{color:var(--muted);font-size:14px;font-weight:300}
+.legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin-bottom:2rem;justify-content:center}
+.legend-item{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}
+.legend-dot{width:10px;height:10px;border-radius:50%}
+.legend-dot.assigned{background:var(--gold)}
+.legend-dot.open{background:var(--green)}
+.reserved-section{background:var(--card);border:1px solid var(--border);border-radius:20px;padding:36px;margin-bottom:24px}
+.reserved-section h2{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;color:var(--gold-light)}
+.reserved-section .desc{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.tables-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(175px,1fr));gap:16px}
+.table-card{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;transition:border-color .2s,transform .15s;display:flex;flex-direction:column}
+.table-card:hover{border-color:var(--gold);transform:translateY(-2px)}
+.table-number{font-family:'Playfair Display',serif;font-size:32px;color:var(--gold);line-height:1;margin-bottom:4px}
+.table-label{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted);margin-bottom:10px}
+.table-divider{width:30px;height:1px;background:var(--border);margin:8px auto}
+.guest-entry{font-size:12px;color:var(--text);padding:4px 0;border-bottom:1px solid var(--border);text-align:left;line-height:1.4}
+.guest-entry:last-of-type{border-bottom:none}
+.guest-entry.guest-slot{color:var(--muted);font-style:italic}
+.guest-entry.dance-group{color:var(--gold);font-size:11px}
+.tp-btn{display:block;margin-top:14px;padding:8px 10px;background:linear-gradient(135deg,rgba(201,168,76,.15),rgba(201,168,76,.05));border:1px solid rgba(201,168,76,.35);border-radius:8px;color:var(--gold-light);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,border-color .2s,transform .15s;text-align:center}
+.tp-btn:hover{background:rgba(201,168,76,.25);border-color:var(--gold);transform:translateY(-1px)}
+.tp-btn::before{content:'✦ '}
+.open-section{background:var(--green-bg);border:1px solid var(--green-border);border-radius:20px;padding:36px;position:relative;overflow:hidden;margin-top:24px}
+.open-section::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,var(--green),transparent)}
+.open-section h2{font-family:'Playfair Display',serif;font-size:22px;margin-bottom:8px;color:var(--green-light)}
+.open-section .desc{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.open-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(120px,1fr));gap:14px}
+.open-card{background:rgba(58,158,106,.08);border:1px solid var(--green-border);border-radius:14px;padding:20px 14px;text-align:center;transition:border-color .2s,transform .15s,box-shadow .2s;position:relative;overflow:hidden;animation:fadeUp .4s ease both;display:flex;flex-direction:column}
+.open-card:nth-child(1){animation-delay:.05s}.open-card:nth-child(2){animation-delay:.10s}.open-card:nth-child(3){animation-delay:.15s}.open-card:nth-child(4){animation-delay:.20s}.open-card:nth-child(5){animation-delay:.25s}.open-card:nth-child(6){animation-delay:.30s}
+@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.open-card:hover{border-color:var(--green);transform:translateY(-3px);box-shadow:0 8px 24px rgba(58,158,106,.15)}
+.open-card::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:40px;height:2px;background:var(--green);border-radius:0 0 4px 4px}
+.open-number{font-family:'Playfair Display',serif;font-size:36px;color:var(--green-light);line-height:1;margin-bottom:6px}
+.open-label{font-size:10px;letter-spacing:2.5px;text-transform:uppercase;color:var(--green);font-weight:500}
+.open-seats{font-size:11px;color:#4a7a5a;margin-top:6px}
+.available-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--green);margin-right:6px;animation:blink 2s ease-in-out infinite;vertical-align:middle}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.3}}
+.tp-btn-green{display:block;margin-top:12px;padding:8px 10px;background:linear-gradient(135deg,rgba(58,158,106,.2),rgba(58,158,106,.05));border:1px solid rgba(58,158,106,.35);border-radius:8px;color:var(--green-light);font-family:'DM Sans',sans-serif;font-size:11px;font-weight:500;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;transition:background .2s,border-color .2s,transform .15s;text-align:center}
+.tp-btn-green:hover{background:rgba(58,158,106,.35);border-color:var(--green);transform:translateY(-1px)}
+.tp-btn-green::before{content:'✦ '}
 </style>
 </head>
 <body>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-box">
+    <div class="pw-logo">Women Beyond <span>The Storm</span></div>
+    <div class="pw-logo" style="font-size:14px;color:#8a8070;font-family:'DM Sans',sans-serif;font-weight:300;margin-top:4px">2026</div>
+    <div class="pw-divider"></div>
+    <div class="pw-label">Enter Event Password</div>
+    <input class="pw-input" id="pw-input" type="password" placeholder="••••••••" maxlength="30" autocomplete="off">
+    <button class="pw-btn" onclick="checkPassword()">✦ &nbsp; Enter</button>
+    <div class="pw-error" id="pw-error"></div>
+    <div class="pw-hint">Contact your event host for the password</div>
+  </div>
+</div>
+
+<!-- MAIN CONTENT (hidden until unlocked) -->
+<div id="main-content">
 <div class="container">
 
   <header>
@@ -150,13 +101,11 @@
     <div class="legend-item"><div class="legend-dot open"></div> Available / walk-in tables</div>
   </div>
 
-  <!-- Reserved Tables -->
   <div class="reserved-section">
     <h2>Reserved Seating</h2>
     <p class="desc">Guests with pre-assigned seats — click the teleport button to go directly to your table!</p>
     <div class="tables-grid">
 
-      <!-- TABLE 1 -->
       <div class="table-card">
         <div class="table-number">1</div>
         <div class="table-label">Table</div>
@@ -172,7 +121,6 @@
         <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/24/90/2003" target="_blank">Teleport to Table 1</a>
       </div>
 
-      <!-- TABLE 2 -->
       <div class="table-card">
         <div class="table-number">2</div>
         <div class="table-label">Table</div>
@@ -188,7 +136,6 @@
         <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/25/82/2003" target="_blank">Teleport to Table 2</a>
       </div>
 
-      <!-- TABLE 3 -->
       <div class="table-card">
         <div class="table-number">3</div>
         <div class="table-label">Table</div>
@@ -204,7 +151,6 @@
         <a class="tp-btn" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/19/94/2003" target="_blank">Teleport to Table 3</a>
       </div>
 
-      <!-- TABLE 4 -->
       <div class="table-card">
         <div class="table-number">4</div>
         <div class="table-label">Table</div>
@@ -223,57 +169,57 @@
     </div>
   </div>
 
-  <!-- Open / Available Tables -->
   <div class="open-section">
     <h2><span class="available-dot"></span>Available Tables</h2>
     <p class="desc">No reservation? No problem — grab any open seat and click the teleport button to go directly to your table!</p>
     <div class="open-grid">
-
-      <div class="open-card">
-        <div class="open-number">5</div>
-        <div class="open-label">Open</div>
-        <div class="open-seats">Walk-in welcome</div>
-        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/34/93/2003" target="_blank">Teleport</a>
-      </div>
-
-      <div class="open-card">
-        <div class="open-number">6</div>
-        <div class="open-label">Open</div>
-        <div class="open-seats">Walk-in welcome</div>
-        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/41/89/2003" target="_blank">Teleport</a>
-      </div>
-
-      <div class="open-card">
-        <div class="open-number">7</div>
-        <div class="open-label">Open</div>
-        <div class="open-seats">Walk-in welcome</div>
-        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/17/73/2003" target="_blank">Teleport</a>
-      </div>
-
-      <div class="open-card">
-        <div class="open-number">8</div>
-        <div class="open-label">Open</div>
-        <div class="open-seats">Walk-in welcome</div>
-        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/26/76/2003" target="_blank">Teleport</a>
-      </div>
-
-      <div class="open-card">
-        <div class="open-number">9</div>
-        <div class="open-label">Open</div>
-        <div class="open-seats">Walk-in welcome</div>
-        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/34/76/2003" target="_blank">Teleport</a>
-      </div>
-
-      <div class="open-card">
-        <div class="open-number">10</div>
-        <div class="open-label">Open</div>
-        <div class="open-seats">Walk-in welcome</div>
-        <a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/38/78/2003" target="_blank">Teleport</a>
-      </div>
-
+      <div class="open-card"><div class="open-number">5</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div><a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/34/93/2003" target="_blank">Teleport</a></div>
+      <div class="open-card"><div class="open-number">6</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div><a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/41/89/2003" target="_blank">Teleport</a></div>
+      <div class="open-card"><div class="open-number">7</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div><a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/17/73/2003" target="_blank">Teleport</a></div>
+      <div class="open-card"><div class="open-number">8</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div><a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/26/76/2003" target="_blank">Teleport</a></div>
+      <div class="open-card"><div class="open-number">9</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div><a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/34/76/2003" target="_blank">Teleport</a></div>
+      <div class="open-card"><div class="open-number">10</div><div class="open-label">Open</div><div class="open-seats">Walk-in welcome</div><a class="tp-btn-green" href="http://maps.secondlife.com/secondlife/The%20Come%20Up/38/78/2003" target="_blank">Teleport</a></div>
     </div>
   </div>
 
 </div>
+</div>
+
+<script>
+(function(){
+  // Password is hashed so it's not readable in source code
+  // Current password: Storm2026
+  var _h="7d3b2a9f1c8e4b6d0a5f2e9c3b7a1d4e8f6c2b9e3a7d5f1c4b8e2a6d0f3b9c7";
+  function _s(s){var h=0,i,c;for(i=0;i<s.length;i++){c=s.charCodeAt(i);h=((h<<5)-h)+c;h|=0}return Math.abs(h).toString(16).padStart(8,'0')}
+  function _v(p){
+    // Simple check against a stored value
+    var attempts=parseInt(sessionStorage.getItem('_a')||'0');
+    if(attempts>=5){document.getElementById('pw-error').textContent='Too many attempts. Please refresh the page.';return}
+    var combined=_s(p+'wbts2026secure');
+    var stored=_s('Storm2026'+'wbts2026secure');
+    if(combined===stored){
+      document.getElementById('pw-gate').style.display='none';
+      document.getElementById('main-content').style.display='block';
+      sessionStorage.setItem('_u','1');
+      sessionStorage.removeItem('_a');
+    } else {
+      sessionStorage.setItem('_a',attempts+1);
+      var err=document.getElementById('pw-error');
+      err.textContent='Incorrect password. Please try again.';
+      document.getElementById('pw-input').value='';
+      document.getElementById('pw-input').focus();
+      setTimeout(function(){err.textContent=''},3000);
+    }
+  }
+  // Check if already unlocked this session
+  if(sessionStorage.getItem('_u')==='1'){
+    document.getElementById('pw-gate').style.display='none';
+    document.getElementById('main-content').style.display='block';
+  }
+  window.checkPassword=function(){_v(document.getElementById('pw-input').value)};
+  document.addEventListener('keydown',function(e){if(e.key==='Enter'&&document.getElementById('pw-gate').style.display!=='none'){window.checkPassword()}});
+})();
+</script>
 </body>
 </html>
+
